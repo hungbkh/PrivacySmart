@@ -31,6 +31,7 @@ class SendMailHandle(MainHandle):
             server.login('jackcherry1290@gmail.com', 'forever261289')
             msg = "HI!"
             server.sendmail("jackcherry1290@gmail.com", "%s"%email, msg)
+            # server.sendmail("jackcherry1290@gmail.com", "loveviet.90bkh@gmail.com", msg)
             server.quit()
             res['error_code'] = 0
             res['error_msg'] = 'done'
