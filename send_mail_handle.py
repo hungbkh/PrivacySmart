@@ -5,18 +5,12 @@ from main_handle import MainHandle
 from tornado.escape import json_encode
 import collections
 import statements
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+from datetime import datetime
 
 class SendMailHandle(MainHandle):
-    def post(self):
-        # server = smtplib.SMTP('smtp.gmail.com', 587)
-        # server.ehlo()
-        # server.starttls()
-        # server.login('jackcherry1290@gmail.com', 'forever261289')
-        # msg = "HI!"
-        # server.sendmail("jackcherry1290@gmail.com", "loveviet.90bkh@gmail.com", msg)
-        # server.quit()
-        # self.write("done")
-        # return
+    def post(self):        
         body = tornado.escape.json_decode(self.request.body)
         res = {}
         value_ip = []
@@ -29,8 +23,19 @@ class SendMailHandle(MainHandle):
             server.ehlo()
             server.starttls()
             server.login('jackcherry1290@gmail.com', 'forever261289')
-            msg = "HI!"
-            server.sendmail("jackcherry1290@gmail.com", "%s"%email, msg)
+            msg = MIMEMultipart()
+            msg['From'] = "jackcherry1290@gmail.com"
+            msg['To'] = "%s"%email
+            msg['Subject'] = "SECURITY ALERT"
+            body = """
+            Failed Login Attempt to your device: %s
+            A failed login attempt has occurred on %s, %s.
+            Someone from the IP address %s used the device %s to attempt to login to server.
+            If you did not attempt to access your account, please contact your Information Technology Security Team immediately.
+            """%("LG", "LG", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "192.168", "LG")
+            msg.attach(MIMEText(body, 'plain'))
+            text = msg.as_string()
+            server.sendmail("jackcherry1290@gmail.com", "%s"%email, text)
             # server.sendmail("jackcherry1290@gmail.com", "loveviet.90bkh@gmail.com", msg)
             server.quit()
             res['error_code'] = 0
