@@ -15,10 +15,13 @@ class SendMailHandle(MainHandle):
         res = {}
         value_ip = []
         value_ip.append(body['imei'])
+        ip_address = body["ip_address"]
+        time_request = body["time"]
     	self.cursor.execute(statements.CM_GET_EMAIL, value_ip)
         row = self.cursor.fetchone()
         if row:
-            email = row[0]      
+            email = row[0]     
+            device_name = row[1] 
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.ehlo()
             server.starttls()
@@ -32,11 +35,11 @@ class SendMailHandle(MainHandle):
             A failed login attempt has occurred on %s, %s.
             Someone from the IP address %s used the device %s to attempt to login to server.
             If you did not attempt to access your account, please contact your Information Technology Security Team immediately.
-            """%("LG", "LG", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "192.168", "LG")
+            """%(str(device_name), str(device_name), str(time_request), str(ip_address), str(device_name))
             msg.attach(MIMEText(body, 'plain'))
             text = msg.as_string()
             server.sendmail("jackcherry1290@gmail.com", "%s"%email, text)
-            # server.sendmail("jackcherry1290@gmail.com", "loveviet.90bkh@gmail.com", msg)
+            # server.sendmail("jackcherry1290@gmail.com", "loveviet.90bkh@gmail.com", text)
             server.quit()
             res['error_code'] = 0
             res['error_msg'] = 'done'

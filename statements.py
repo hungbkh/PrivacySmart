@@ -5,7 +5,7 @@ CM_TEST = '''
 		'''
 
 CM_GET_EMAIL = '''
-			SELECT email
+			SELECT email, device_name
 			FROM spl_users.device_users
 			WHERE imei=%s
 		'''
@@ -16,6 +16,15 @@ CM_INSERT_DEVICE = '''
                 ON DUPLICATE KEY UPDATE
   				device_name = VALUES(device_name),
   				email = VALUES(email)
+  				password = VALUES(password),
+  				password_pattern = VALUES(password_pattern),
+  				password_face = VALUES(password_face)
+'''
+
+CM_FORGET_PASSWORD = '''
+		SELECT password, device_name
+		FROM spl_users.device_users
+		WHERE imei=%s and email=%s
 '''
 
 CM_UPDATE_PASSWORD_DEVICE = '''
