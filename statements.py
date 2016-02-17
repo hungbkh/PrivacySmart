@@ -14,11 +14,7 @@ CM_INSERT_DEVICE = '''
                 INSERT INTO spl_users.device_users (imei, device_name, email, password, password_pattern, password_face, create_time, update_time)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
-  				device_name = VALUES(device_name),
-  				email = VALUES(email)
-  				password = VALUES(password),
-  				password_pattern = VALUES(password_pattern),
-  				password_face = VALUES(password_face)
+                device_name = VALUES(device_name),email = VALUES(email),password = VALUES(password),password_pattern = VALUES(password_pattern),password_face = VALUES(password_face)
 '''
 
 CM_FORGET_PASSWORD = '''
