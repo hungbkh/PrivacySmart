@@ -65,6 +65,7 @@ def scheduleSendLogAccessApp():
         print("email:"+str(row[0]))
         vi = []
         vi.append(str(row[0]));
+        vi.append(datetime.now().strftime('%Y-%m-%d'))
         cursor.execute(statements.CM_GET_LOG, vi)
         log_rows = cursor.fetchall() 
         content_mail = ''

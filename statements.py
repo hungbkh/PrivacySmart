@@ -28,7 +28,7 @@ CM_EMAILS = '''
 		'''
 
 CM_GET_LOG = '''
-			SELECT * FROM spl_users.log_access_app where email=%s;
+			SELECT * FROM spl_users.log_access_app where email=%s and access_time > %s;
 		'''
 
 CM_GET_YOUR_LOG = '''

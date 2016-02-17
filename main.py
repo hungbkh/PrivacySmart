@@ -26,7 +26,7 @@ def job():
 	print("I'm working...")
 
 if __name__ == "__main__":
-	print(datetime.datetime.now())
+	print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 	print"Start Server..."
 	app = make_app()
 	app.listen(8888)
