@@ -8,7 +8,7 @@ def job():
 
 print"Start Schedule at %s.."%datetime.datetime.now()
 # schedule.every(2).seconds.do(job)
-schedule.every().day.at("0:4").do(scheduleSendLogAccessApp)
+schedule.every().day.at("0:12").do(scheduleSendLogAccessApp)
 while 1:
 	schedule.run_pending()
 	time.sleep(1)

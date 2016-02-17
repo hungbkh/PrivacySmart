@@ -76,7 +76,7 @@ def scheduleSendLogAccessApp():
             content_mail += "Network ip:"+str(log_row[7])+"  "
             content_mail += "At:"+str(log_row[5])+"\n"
         if content_mail != '':
-            mail = [content_mail, str(row[0])]
+            mail = [content_mail, str(row[0]),datetime.now().strftime('%Y-%m-%d')]
             sendEmail(mail)
 
 def sendEmail(input):
@@ -87,7 +87,7 @@ def sendEmail(input):
     msg = MIMEMultipart()
     msg['From'] = "jackcherry1290@gmail.com"
     msg['To'] = str(input[1])
-    msg['Subject'] = "LOG ACCESS TO YOUR APPS"
+    msg['Subject'] = "LOG ACCESS TO YOUR APPS %s" % input[2]
     # body = """
     # Your password on device: %s is %s.              
     # """%(str(device_name), str(password))
