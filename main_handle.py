@@ -7,8 +7,15 @@ class MainHandle(tornado.web.RequestHandler):
         self.db = MySQLdb.connect(
             host="localhost",
             user="root",
-            passwd="forever2612",
+            passwd="0000",
             db="spl_users",
             charset='utf8',
             use_unicode=True)
+         # self.db = MySQLdb.connect(
+         #    host="localhost",
+         #    user="root",
+         #    passwd="forever2612",
+         #    db="spl_users",
+         #    charset='utf8',
+         #    use_unicode=True)
         self.cursor = self.db.cursor()
