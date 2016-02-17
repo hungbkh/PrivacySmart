@@ -16,7 +16,7 @@ def make_app():
 		])
 
 if __name__ == "__main__":
-    print"Start Server..."
+    print"Start Server 2..."
     app = make_app()
     app.listen(8888)
     tornado.ioloop.IOLoop.current().start()
