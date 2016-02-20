@@ -17,9 +17,9 @@ CM_INSERT_DEVICE = '''
                 device_name = VALUES(device_name),email = VALUES(email),password = VALUES(password),password_pattern = VALUES(password_pattern),password_face = VALUES(password_face)
 '''
 
-CM_LOG_ACCESS = '''
-                INSERT INTO spl_users.log_access_app (imei, device_name, app_name, access_time, gps, network_ip, package)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
+CM_LOG_ACCESS = u'''
+                INSERT INTO spl_users.log_access_app (imei, device_name, app_name, access_time, gps, network_ip, package, email)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
 '''
 
 CM_EMAILS = '''
@@ -32,7 +32,7 @@ CM_GET_LOG = '''
 		'''
 
 CM_GET_YOUR_LOG = '''
-			SELECT * FROM spl_users.log_access_app where email=%s and imei=%s;
+			SELECT * FROM spl_users.log_access_app where email=%s and imei=%s and access_time > %s;
 		'''
 
 CM_FORGET_PASSWORD = '''

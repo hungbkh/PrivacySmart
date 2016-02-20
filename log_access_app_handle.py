@@ -13,20 +13,20 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 import smtplib
 
-db = MySQLdb.connect(
-            host="localhost",
-            user="root",
-            passwd="0000",
-            db="spl_users",
-            charset='utf8',
-            use_unicode=True)
 # db = MySQLdb.connect(
 #             host="localhost",
 #             user="root",
-#             passwd="forever2612",
+#             passwd="0000",
 #             db="spl_users",
 #             charset='utf8',
 #             use_unicode=True)
+db = MySQLdb.connect(
+            host="localhost",
+            user="root",
+            passwd="forever2612",
+            db="spl_users",
+            charset='utf8',
+            use_unicode=True)
 # you must create a Cursor object. It will let
 #  you execute all the queries you need
 cursor = db.cursor()
@@ -45,6 +45,7 @@ class LogAccessAppHandle(MainHandle):
         value_ip.append(body['gps'])
         value_ip.append(body['network_ip'])
         value_ip.append(body['package'])
+        value_ip.append(body['email'])
 
         self.cursor.execute(statements.CM_LOG_ACCESS, value_ip)
         self.db.commit()
