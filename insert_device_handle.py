@@ -28,7 +28,6 @@ class InsertDeviceHandle(MainHandle):
         value_ip.append(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
         self.cursor.execute(statements.CM_INSERT_DEVICE, value_ip)
-        self.db.commit()
         row = self.cursor.fetchall()      
         if row == 0:
             res['error_code'] = 1

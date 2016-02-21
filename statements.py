@@ -35,6 +35,17 @@ CM_GET_YOUR_LOG = '''
 			SELECT * FROM spl_users.log_access_app where email=%s and imei=%s and access_time > %s;
 		'''
 
+CM_CHECK_ACCESS_APP = '''
+			SELECT * FROM spl_users.forbid_access_app where imei=%s and email=%s and package=%s;
+'''
+
+CM_ADD_APP_TO_FORBID = '''
+			 INSERT INTO spl_users.forbid_access_app(imei, email, package)
+             VALUES (%s, %s, %s)
+             ON DUPLICATE KEY UPDATE
+             imei=VALUES(imei), email=VALUES(email),package=VALUES(package)
+'''
+
 CM_FORGET_PASSWORD = '''
 		SELECT password, device_name
 		FROM spl_users.device_users
