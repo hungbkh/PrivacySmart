@@ -8,6 +8,7 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 import smtplib
 import send_mail_helper
+from EnDeCrypt import AESCipher
 
 class ForgetPasswordHandle(MainHandle):
     def post(self):        
@@ -23,9 +24,12 @@ class ForgetPasswordHandle(MainHandle):
             password = row[0]
             device_name = row[1]
             if password:
+                print(password)
+                endecypr = AESCipher()
+                de = endecypr.decrypt(str(password))
                 body = """
                 Your password on device: %s is %s.              
-                """%(str(device_name), str(password))
+                """%(str(device_name), str(de))
                 input = [body, email]
                 send_mail_helper.SendEmail(input)
                 # server = smtplib.SMTP('smtp.gmail.com', 587)

@@ -24,7 +24,6 @@ class YourLogAccessAppHandle(MainHandle):
 		value_ip.append(body['imei'])
 		value_ip.append(datetime.now().strftime('%Y-%m-%d'))
 		self.cursor.execute(statements.CM_GET_YOUR_LOG, value_ip)
-		self.db.commit()
 		rows = self.cursor.fetchall()
 		for r in rows:
 			t = collections.OrderedDict()

@@ -4,19 +4,19 @@ import MySQLdb
 
 class MainHandle(tornado.web.RequestHandler):
     def initialize(self):
-        self.db = MySQLdb.connect(
-            host="localhost",
-            user="root",
-            passwd="0000",
-            db="spl_users",
-            charset='utf8',
-            use_unicode=True)
         # self.db = MySQLdb.connect(
-        #      host="localhost",
-        #      user="root",
-        #      passwd="forever2612",
-        #      db="spl_users",
-        #      charset='utf8',
-        #      use_unicode=True)
+        #     host="localhost",
+        #     user="root",
+        #     passwd="0000",
+        #     db="spl_users",
+        #     charset='utf8',
+        #     use_unicode=True)
+        self.db = MySQLdb.connect(
+             host="localhost",
+             user="root",
+             passwd="forever2612",
+             db="spl_users",
+             charset='utf8',
+             use_unicode=True)
         self.cursor = self.db.cursor()
         self.cursor.execute("SET NAMES utf8;")
